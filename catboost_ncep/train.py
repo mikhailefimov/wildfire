@@ -66,8 +66,8 @@ def load_ncep_var(var, press_level):
     df = df.merge(ds.rolling(time=30).mean().to_dataframe()[[var]].reset_index(),
                   on=['lon', 'lat', 'time'], suffixes=('', '_30d'), how='left')
 
-    df['lat'] = (df.lat / 2.5).astype(np.int8)
-    df['lon'] = (df.lon / 2.5).astype(np.int8)
+    df['lat'] = np.round(df.lat / 2.5).astype(np.int8)
+    df['lon'] = np.round(df.lon / 2.5).astype(np.int8)
     return df.copy()
 
 
