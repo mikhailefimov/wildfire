@@ -5,8 +5,15 @@ https://wildfire.sberbank.ai/competition
 
 https://github.com/sberbank-ai/mchs-wildfire
 
+## Baselines
+### 1. catboost_simple 
+Catboost, только тренировочные данные.
+
+### 2. catboost_ncep 
+Catboost, тренировочные данные и данные о погоде.
+
 ## Usage
-### 1. Скачиваем данные
+#### 1. Скачиваем данные
 Тренировочный датасет скачиваем вручную с сайта https://wildfire.sberbank.ai/competition. 
 В архиве будет два файла - `wildfires_train.csv` и `wildfires_check.csv`, распаковываем их в папку `data`.
 
@@ -15,7 +22,7 @@ https://github.com/sberbank-ai/mchs-wildfire
 
 [NCEP Reanalysis 2]: https://www.esrl.noaa.gov/psd/data/gridded/data.ncep.reanalysis2.html
 
-### 2. Тренируем модель
+#### 2. Тренируем модель
 
 `train_in_jupyter.ipynb` - тренировка в блокноте.
 
@@ -23,23 +30,15 @@ https://github.com/sberbank-ai/mchs-wildfire
 
 `train_in_docker.sh` - запускает `train.py` в docker-контейнере.
 
-### 3. Тестируем предикт
+#### 3. Тестируем предикт
 
 `predict.py` - скрипт для предикта.
 
 `test_predict.sh` - проверка работы `predict.py` на контрольных данных в контейнере.
 
-### 4. Упаковываем submission.
+#### 4. Упаковываем submission.
 
 `pack_submission.sh` - упаковывает нужные файлы в `submission.zip` для загрузки на сайт.
-
-## Baselines
-
-### 1. catboost_simple 
-Catboost, только тренировочные данные.
-
-### 2. catboost_ncep 
-Catboost, тренировочные данные и данные о погоде.
 
 ## Решаем проблемы с Docker
 Решение запускается в контейнере. Организаторы предлагают использовать образ `sberbank/python`. 
