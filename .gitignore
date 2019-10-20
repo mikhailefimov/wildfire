@@ -1,0 +1,7 @@
+submission.zip
+catboost.cbm
+wildfires_check_pred.csv
+.ipynb_checkpoints
+catboost_info
+/data/*
+!/data/download_ncep.sh
