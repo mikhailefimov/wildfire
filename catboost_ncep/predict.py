@@ -24,7 +24,7 @@ def preprocess(df):
     df['latitude'] = df['latitude'].astype(np.float32)
     df['weekday'] = df.date.dt.weekday.astype(np.int8)
     df['month'] = df.date.dt.month.astype(np.int8)
-    df.set_index('point_id', inplace=True)
+    df.set_index('fire_id', inplace=True)
     df.drop(['fire_type', 'fire_type_name'], axis=1, inplace=True, errors='ignore')
 
 
@@ -58,7 +58,7 @@ def add_ncep_features(df):
     for var, press_level in (('air', 1000), ('uwnd', 1000), ('rhum', 1000)):
         var_df = load_ncep_var(var, press_level)
         mdf = df.reset_index().merge(var_df, left_on=['lon', 'lat', 'date'], right_on=['lon', 'lat', 'time'],
-                                     how='left', ).set_index('point_id')
+                                     how='left', ).set_index('fire_id')
         for suffix in ('', '_7d', '_14d', '_30d'):
             df[var + suffix] = mdf[var + suffix]
     df.drop(['lon', 'lat'], axis=1, inplace=True)
@@ -86,4 +86,4 @@ if __name__ == '__main__':
         ],
     )
 
-    df_predictions.to_csv(output_csv)
+    df_predictions.to_csv(output_csv, index_label='fire_id')

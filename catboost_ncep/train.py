@@ -43,7 +43,7 @@ def preprocess(df):
     df['month'] = df.date.dt.month.astype(np.int8)
     df['ym'] = (df.date.dt.month + (df.date.dt.year - 2000) * 12).astype(np.int16)
     df['fire_type'] = df.fire_type.astype(np.uint8)
-    df.set_index('point_id', inplace=True)
+    df.set_index('fire_id', inplace=True)
     df.drop(['fire_type_name'], axis=1, inplace=True)
 
 
@@ -77,7 +77,7 @@ def add_ncep_features(df):
     for var, press_level in (('air', 1000), ('uwnd', 1000), ('rhum', 1000)):
         var_df = load_ncep_var(var, press_level)
         mdf = df.reset_index().merge(var_df, left_on=['lon', 'lat', 'date'], right_on=['lon', 'lat', 'time'],
-                                     how='left', ).set_index('point_id')
+                                     how='left', ).set_index('fire_id')
         for suffix in ('', '_7d', '_14d', '_30d'):
             df[var + suffix] = mdf[var + suffix]
     df.drop(['lon', 'lat'], axis=1, inplace=True)

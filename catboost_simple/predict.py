@@ -7,7 +7,6 @@ import numpy as np
 import pandas
 import pandas as pd
 
-DATA_PATH = os.environ.get('DATASETS_PATH', '../data/')
 MODELS_PATH = os.path.dirname(os.path.realpath(__file__))
 
 SEED = 42
@@ -23,7 +22,7 @@ def preprocess(df):
     df['latitude'] = df['latitude'].astype(np.float32)
     df['weekday'] = df.date.dt.weekday.astype(np.int8)
     df['month'] = df.date.dt.month.astype(np.int8)
-    df.set_index('point_id', inplace=True)
+    df.set_index('fire_id', inplace=True)
     df.drop(['fire_type', 'fire_type_name'], axis=1, inplace=True, errors='ignore')
 
 
@@ -45,7 +44,7 @@ if __name__ == '__main__':
         columns=[
             'fire_{}_prob'.format(class_id)
             for class_id in range(1, 12)
-        ],
+        ]
     )
 
-    df_predictions.to_csv(output_csv)
+    df_predictions.to_csv(output_csv, index_label='fire_id')
