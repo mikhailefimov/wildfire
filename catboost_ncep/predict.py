@@ -8,7 +8,7 @@ import pandas
 import pandas as pd
 import xarray
 
-DATA_PATH = os.environ.get('DATASETS_PATH', '../data/')
+DATASETS_PATH = os.environ.get('DATASETS_PATH', '../data/')
 MODELS_PATH = os.path.dirname(os.path.realpath(__file__))
 
 SEED = 42
@@ -30,13 +30,13 @@ def preprocess(df):
 
 def load_ncep_var(var, press_level):
     result = []
-    for year in range(2012, 2020):
-        dataset_filename = os.path.join(DATA_PATH, 'ncep', f'{var}.{year}.nc')
-        ds = xarray.open_dataset(dataset_filename)
-        ds = ds.sel(drop=True, level=press_level)[var]
-        ds = ds[:, (ds.lat >= 15 * 2.5 - 0.1) & (ds.lat <= 29 * 2.5 + 0.1),
-             (ds.lon >= 6 * 2.5 - 0.1) & (ds.lon <= 71 * 2.5 + 0.1)]
-        result.append(ds)
+    year = 2019
+    dataset_filename = '{}/ncep/{}.{}.nc'.format(DATASETS_PATH, var, year)
+    ds = xarray.open_dataset(dataset_filename)
+    ds = ds.sel(drop=True, level=press_level)[var]
+    ds = ds[:, (ds.lat >= 15 * 2.5 - 0.1) & (ds.lat <= 29 * 2.5 + 0.1),
+         (ds.lon >= 6 * 2.5 - 0.1) & (ds.lon <= 71 * 2.5 + 0.1)]
+    result.append(ds)
     ds = xarray.merge(result)
     df = ds.to_dataframe()[[var]].reset_index()
 
