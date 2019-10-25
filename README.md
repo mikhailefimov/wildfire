@@ -7,10 +7,10 @@ https://github.com/sberbank-ai/mchs-wildfire
 
 ## Baselines
 ### 1. catboost_simple 
-Catboost, только тренировочные данные.
+Catboost, только тренировочные данные (Public LB 0.91).
 
 ### 2. catboost_ncep 
-Catboost, тренировочные данные и данные о погоде.
+Catboost, тренировочные данные и данные о погоде (Public LB 0.92).
 
 ## Usage
 #### 1. Скачиваем данные
