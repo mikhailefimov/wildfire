@@ -1,2 +1,2 @@
 #!/bin/sh
-docker run -it --rm -v "$(pwd)":/home/script -v "$(pwd)/../data":/home/data -e DATASETS_PATH="/home/data" sbpython python /home/script/predict.py /home/data/wildfires_check.csv /home/script/wildfires_check_pred.csv
+docker run -it --rm -v "$(pwd)":/home/script -v "$(pwd)/../data":/home/data -e DATASETS_PATH="/home/data" efimov/wildfire python /home/script/predict.py /home/data/wildfires_check.csv /home/script/wildfires_check_pred.csv

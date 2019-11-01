@@ -1,3 +1,3 @@
 #!/bin/sh
 
-docker build --rm -t sbpython ./docker
+docker build --rm -t efimov/wildfire ./docker
