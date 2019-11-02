@@ -28,7 +28,7 @@ Catboost, тренировочные данные, данные о погоде 
 [NCEP Reanalysis 2]: https://www.esrl.noaa.gov/psd/data/gridded/data.ncep.reanalysis2.html
 
 ##### 1.3 Географические данные из OpenStreetMap
-В  файле `russia.osm.gpkg.gz` сохранена часть карты OSM в формате GeoPandas. 
+В  файле [russia.osm.gpkg.gz] сохранена часть карты OSM в формате GeoPandas. 
 Этот файл распространяется под лицензией [ODbL], как производный от OSM.
 
 Он сформирован скриптом `preprocess_osm.py` из дампа карты России с сайта [GeoFabric] (~2,5 Gb).
@@ -36,6 +36,8 @@ Catboost, тренировочные данные, данные о погоде 
  - скачайте дамп карты России в формате PBF с сайта [GeoFabric] (~2,5 Gb)
  - поместите его в папку `data`
  - запустите скрипт `preprocess_osm_in_docker.sh` (работает долго, 1-2 часа)
+
+[russia.osm.gpkg.gz]: https://github.com/mikhailefimov/wildfire/raw/master/catboost_ncep_osm/russia.osm.gpkg.gz
 
 [ODbL]: https://www.openstreetmap.org/copyright
 
