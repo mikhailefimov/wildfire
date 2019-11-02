@@ -12,15 +12,35 @@ Catboost, только тренировочные данные (Public LB 0,9060
 ### 2. catboost_ncep 
 Catboost, тренировочные данные и данные о погоде (Public LB 0,9183).
 
+### 3. catboost_ncep_osm
+Catboost, тренировочные данные, данные о погоде и географические данные из OpenStreetMap (Public LB 0,9202).
+
 ## Usage
 #### 1. Скачиваем данные
+##### 1.1 Тренировочные данные
 Тренировочный датасет скачиваем вручную с сайта https://wildfire.sberbank.ai/competition. 
 В архиве будет два файла - `wildfires_train.csv` и `wildfires_check.csv`, распаковываем их в папку `data`.
 
+##### 1.2 Данные о погоде
 Дополнительно можно использовать наборы открытых данных.
 Скрипт `download_ncep.sh` в папке `data` скачает исторические данные о погоде с сайта [NCEP Reanalysis 2].
 
 [NCEP Reanalysis 2]: https://www.esrl.noaa.gov/psd/data/gridded/data.ncep.reanalysis2.html
+
+##### 1.3 Географические данные из OpenStreetMap
+В  файле `russia.osm.gpkg.gz` сохранена часть карты OSM в формате GeoPandas. 
+Этот файл распространяется под лицензией [ODbL], как производный от OSM.
+
+Он сформирован скриптом `preprocess_osm.py` из дампа карты России с сайта [GeoFabric] (~2,5 Gb).
+Чтобы пересоздать его:
+ - скачайте дамп карты России в формате PBF с сайта [GeoFabric] (~2,5 Gb)
+ - поместите его в папку `data`
+ - запустите скрипт `preprocess_osm_in_docker.sh` (работает долго, 1-2 часа)
+
+[ODbL]: https://www.openstreetmap.org/copyright
+
+[GeoFabric]:http://download.geofabrik.de/russia-latest.osm.pbf 
+
 
 #### 2. Тренируем модель
 

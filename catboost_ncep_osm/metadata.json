@@ -1,0 +1,4 @@
+{
+    "image": "efimov/wildfire",
+    "entry_point": "python predict.py $PATH_INPUT/input.csv $PATH_OUTPUT/output.csv"
+}

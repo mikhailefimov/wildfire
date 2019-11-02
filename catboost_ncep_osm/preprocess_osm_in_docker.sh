@@ -1,0 +1,2 @@
+#!/bin/sh
+docker run -it --rm -v "$(pwd)":/home/script -v "$(pwd)/../data":/home/data efimov/wildfire python /home/script/preprocess_osm.py /home/data/russia-latest.osm.pbf /home/script/russia.osm.gpkg.gz
